@@ -13,25 +13,36 @@ public class QuickSort {
 		
 	//	int[] array = new int[] {22,77,15,21,19};
 		
-		for (int i=0; i<array.length-1;i++){
-			if (array[i] > array[i+1]) {
-
-		int n = 0;
+		//int set = array.length;
 		
-		int divisions = (int) Math.pow(2,n);
-		System.out.println("division is: " + divisions);
-	
-		System.out.println("array length is: " + array.length);
+		
+		for (int n=1; n<array.length-1;n++){
+		//	if (array[n] > array[n+1]) {
+
+//		int n = 0;
+		System.out.println("STARTING OVER " + n);
+		//int sections = (int) Math.pow(2,n);
+		int sections = n;
+
 		// get number of elements in each section
-		int size = (array.length)/divisions -1;
-		//System.out.println("size is: " + size);
+		int size = (array.length)-1/sections;
+		
+		//int nextChunk = array[array.length-size
+		//while (sections <= size) {
+			System.out.println("number of sections: " + sections);
+			System.out.println("array length is: " + array.length);
+		//	System.out.println("chunk is: " + chunk);
+			System.out.println("size is: " + size);
+
+			// define working set
+			//set = 
 	
 		//set pivot point for each section
 		int pivot = (size/2)+1;
 		System.out.println("pivot is: " + array[pivot]);
 		System.out.println("");
 	
-			for (i=0; i<size; i++){
+			for (int i=0; i<size; i++){
 				int tmpLeft = 0;
 				int tmpRight = 0;
 			
@@ -98,16 +109,19 @@ public class QuickSort {
 					
 					if (array[i] < array[pivot]) {
 					//	array[i] = array[(size/2+2)];
-						System.out.println(array[i] + " is less than: " + array[pivot]);
-						
-						tmpRight = array[(size/2)+1];
-						array[(size/2)+1] = array[i];
+						System.out.println(array[i] + " < " + array[pivot]);
+
+						tmpRight = array[pivot];
+						System.out.println("tmpRight is now: " + tmpRight);
+						array[pivot] = array[i];
 						array[i] = tmpRight;
-						System.out.println(array[i] + " > " + array[pivot]);
-					//	tmpArray.add(array[pivot+1]);
+						System.out.println(array[i] + " is now greater than: " + array[pivot]);
+				
+					
+					
 					}
 					else if (array[i] > array[pivot]) {
-						System.out.println(array[i] + " is greater than: " + array[pivot]);
+						System.out.println(array[i] + " is greater than: " + array[pivot] + " NO CHANGE");
 						//tmpArray.add(array[pivot-1]);
 					}
 					else if (array[i] == array[pivot]) {
@@ -116,7 +130,7 @@ public class QuickSort {
 				}
 				
 			}
-			n++;
+		//	n++;
 		}
 			
 			
@@ -129,9 +143,13 @@ public class QuickSort {
 				}
 				else {
 				*/
-				System.out.print(i + ",");
+			//	System.out.print(n + ",");
+				for (int k : array){
+					System.out.print(k + ",");
+				}
+				System.out.println("");
 				
 			}
 	
-	}
+//	}
 }
