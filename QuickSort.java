@@ -4,39 +4,54 @@
 
 public class QuickSort {
 
+	int[] array = new int[] {61,60,62,64,58,66,56,59,59,57,60,53,55,54,50};
+	//		46,51,49,48,44,45,43,41,40,42,35,39,31,28,33,32,37,38,23,21,22,19,15};
 	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] array = new int[] {61,60,62,64,58,66,56,59,59,57,60,53,55,54,50};
-		//		46,51,49,48,44,45,43,41,40,42,35,39,31,28,33,32,37,38,23,21,22,19,15};
 		
-	//	int[] array = new int[] {22,77,15,21,19};
-		
-		//int set = array.length;
-		
-		
-		for (int n=1; n<array.length-1;n++){
-		//	if (array[n] > array[n+1]) {
+	}	
+		public int[] recursive () {
+				
+		for (int n=0; n<array.length-1;n++){
+			//need to create a test here that will pass and print if all 
+			//(array[n] > array[n+1]), or start another recursion if not	
+			System.out.println("STARTING OVER " + n);
 
-//		int n = 0;
-		System.out.println("STARTING OVER " + n);
-		//int sections = (int) Math.pow(2,n);
-		int sections = n;
+			//create distinct sections of the array
+			int sections = (int) Math.pow(2,n);
+			System.out.println("sections: " + sections);
+				if (sections < array.length) {
+					for (int s=0; s<sections; s++) {
 
-		// get number of elements in each section
-		int size = (array.length)-1/sections;
+					// get number of elements in each section
+					int size = 1+Math.round((array.length)/sections);
+					
+					System.out.println("size is: " + size);
+					System.out.println(sections + " < " + array.length);
+					
+						for (int a=0; a<size; a++) {
+							int m = a+size*s;
+							if (m < array.length ){
+								System.out.println("array[" + m + "]: " + array[m]);
+							}
+						}			
+					}	
+				}
+			
+		}
+		return array;
 		
-		//int nextChunk = array[array.length-size
-		//while (sections <= size) {
-			System.out.println("number of sections: " + sections);
-			System.out.println("array length is: " + array.length);
-		//	System.out.println("chunk is: " + chunk);
-			System.out.println("size is: " + size);
-
-			// define working set
-			//set = 
-	
+	}			
+				
+	public void print(int[] array) {
+				for (int k : array){
+					System.out.print(k + " ");
+				}			
+			}
+		
+	public void sort (int size, int[] array){
 		//set pivot point for each section
 		int pivot = (size/2)+1;
 		System.out.println("pivot is: " + array[pivot]);
@@ -55,7 +70,7 @@ public class QuickSort {
 						tmpRight = array[i];
 						System.out.println("tmpRight is now: " + array[i]);
 						//look for an i > size/2 to swap with
-						for (int j=size;j>(pivot);j--) {
+						for (int j=size-1;j>(pivot);j--) {
 							System.out.println("j is: " + j);
 							System.out.println("array[j] is: " + array[j]);
 							for (int k : array){
@@ -128,28 +143,11 @@ public class QuickSort {
 						System.out.println(array[i] + " is pivot");
 					}
 				}
-				
 			}
-		//	n++;
-		}
-			
-			
-
-		//	System.out.println("");
-		
-	/*
-				if (j > j+1) {
-					System.out.println("you failed to sort this array");
-				}
-				else {
-				*/
-			//	System.out.print(n + ",");
-				for (int k : array){
-					System.out.print(k + ",");
-				}
-				System.out.println("");
-				
-			}
-	
-//	}
+	}
 }
+			
+	
+
+	
+
