@@ -5,7 +5,7 @@ public class QuickSort {
 		// TODO Auto-generated method stub
 		int[] array = new int[] {61,60,62,64,58,66,56,59,59,57,60,53,55,54,50};
 		//		46,51,49,48,44,45,43,41,40,42,35,39,31,28,33,32,37,38,23,21,22,19,15};
-	//	System.out.println("array length: " + array.length);
+		System.out.println("array length: " + array.length);
 	//	System.out.println("array length/2: " + Math.round(array.length/2));		
 		for (int n=0; n<array.length-1;n++){
 			//need to create a test here that will pass and print if all 
@@ -55,6 +55,16 @@ public class QuickSort {
 									tmpRight = array[m];
 									System.out.println("tmpRight is now this: " + array[m]);
 									System.out.println("(size*(s+1)-2) is now this: " + (size*(s+1)-2));
+									
+									if ((size*(s+1)-2) == pivot) {
+										int j = pivot;
+										System.out.println("array[m]: " + array[m] + " pivot: " + array[pivot]);
+										tmpLeft = array[pivot];
+										array[pivot] = array[m];
+										array[m] = tmpLeft;
+										System.out.println(array[m] + " > " + array[pivot] + " = " + array[j]);
+										}
+									else {
 									//look for an m > pivot to swap with
 									for (int j=(size*(s+1)-2);j>(pivot);j--) {
 										System.out.println("#############");
@@ -67,7 +77,6 @@ public class QuickSort {
 											System.out.println("array[j] < array[pivot] was invoked");
 											array[m] = array[j];
 											array[j] = tmpRight;
-											// must rerun through this section if pivot is swapped
 											
 											System.out.println("");
 											System.out.println(array[m] + " < " + array[pivot] + " < " + array[j]);
@@ -80,11 +89,15 @@ public class QuickSort {
 										//{61,60,62,64,58,66,56,59,57,60,53,55,54,50};
 										else if (j==pivot){
 											System.out.println("array[m]: " + array[m] + " pivot: " + array[pivot]);
-											tmpLeft = array[(size/2)+1];
-											array[(size/2)+1] = array[m];
+											tmpLeft = array[pivot];
+											array[pivot] = array[m];
 											array[m] = tmpLeft;
 											System.out.println(array[m] + " > " + array[pivot] + " = " + array[j]);
+											
+										// must run through this section again if pivot is swapped.
+											i = -1;
 										}
+									}
 									}
 							//		for (int k : array){
 								//		System.out.print(k + ",");
@@ -119,7 +132,7 @@ public class QuickSort {
 									System.out.println("pivot was traded, and 's' was decremented");
 									System.out.println(array[m] + " is now greater than: " + array[pivot]);
 									// if you trade the pivot, you must re-run through this section
-							
+									i = -1;
 								}
 								else if (array[m] > array[pivot]) {
 									System.out.println(array[m] + " is greater than: " + array[pivot] + " NO CHANGE");
