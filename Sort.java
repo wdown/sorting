@@ -4,44 +4,68 @@ public class Sort {
 	/**
 	 * @param args
 	 */
-	
-	
+
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] array = new int[] {80,110,73,999,88,229,77,230};
+		int[] array = new int[] {80,110,73,99,88,229,77,230};
 //		61,60,62,10,64,58,1,60,62,49,64,
 //				58,66,56,59,59,57,60,53,55,54,5015,35,39,31,28,33,32,37,38,23,21,22,19,15,
 //				66,56,59,59,22,44,57,60,53,55,54,50,46,51,49,48,44,45,43,41,40,42,35,39,31,
 //				28,33,32,37,38,23,21,22,19,15};
 
-		int start = 0;
+
+
 		//int back = (array.length-1);
-		int size = array.length;
-		System.out.println("size: " + size);
-		QuickSort(array, 0, size);
+	//	int size = array.length;
+		System.out.println("size: " + array.length);
+		QuickSort(array, 0, array.length);
 	}
 	
 	private static void QuickSort(int[] array, int start, int size ) {
 		System.out.println("");
 		System.out.println("STARTING OVER at start: " + start);
 		
-//		1.  If the starting and ending places coincide, then this segment of the array 
-//		only contains one element and must already be sorted.  
-		int pivot = start;
-		int front = start+1;
-		int back = size-1;
+		
+	
+		int front = start;
+		int back = start+size-1;
+		if (back > start){
+//			back = size-1;			
+//		
+	
+			System.out.println("size is: " + size);
+			System.out.println("back is: " + back);
+		
+		//initialize variables to hold the size of arrays before and after pivot
+		int frontSize = 0;
+		int backSize = 0;
+		
+		
 		// zero should be safe to initialize these with since 0 is the starting point
 		int tmpFront = 0;
 		int tmpBack  = 0;
-
-		if (start == back) {
-			System.out.println(array[front] + "==" + array[back]);
-			System.out.println(front + " == " + back);
-		}
+		
+	//	for (int i=0; i<size; i++) {
+		
+//		1.  If the starting and ending places coincide, then this segment of the array 
+//		only contains one element and must already be sorted.  
+//		if (start == back) {
+//			System.out.println(array[front] + "==" + array[back]);
+//			System.out.println(front + " == " + back);
+//			for (int a : array) {
+//				System.out.print(a + ",");
+//			}
+//			System.out.println("");
+//		//	break;
+//		}
 //		If, however, the starting and ending positions do not coincide, then you 
 //		arbitrarily select the first element in the segment (which is the one designated 
 //		by the starting location) to be what you are (I think) terming the pivot element.
 
+		
+			
+		
 		while (front < back){
 			System.out.println("front: " + front + " is < back: " + back);
 			for (int a : array) {
@@ -61,14 +85,15 @@ public class Sort {
 					System.out.println("array[front] is <= array[start]: " + array[front] 
 							+ "<=" + array[start]);
 					front++;
-					System.out.println("FRONT:: " + front);
+					frontSize++;
+					System.out.println("FRONT:: " + front + ", frontSize:: " + frontSize);
 				}
 				else if (array[front] > array[start]) {
 					System.out.println("array[front] is > array[start]: " + array[front] 
 							+ ">" + array[start]);
 					tmpBack = array[front];
 					System.out.println("tmpBack is now: " + tmpBack);
-					System.out.println("unincremented FRONT:: " + front);
+					System.out.println("unincremented FRONT:: " + front + ", frontSize:: " + frontSize);
 				}
 //			System.out.println("array[back] is >= array[start]: " 
 //					+ array[back] + ">=" + array[start]);
@@ -79,12 +104,13 @@ public class Sort {
 						System.out.println("array[back] is >= array[start]: " 
 								+ array[back] + ">=" + array[start]);
 						back--;
-						System.out.println("BACK:::: " + back);
+						backSize++;
+						System.out.println("BACK:::: " + back + ", backSize:: " + backSize);
 					 }
 					 else if (array[back] < array[start]) {
 						tmpFront = array[back];
 						System.out.println("tmpFront is now: " + tmpFront);
-						System.out.println("unincremented BACK:: " + back);
+						System.out.println("unincremented BACK:: " + back + ", backSize:: " + backSize);
 					 }
 			//	}
 //		     C.  If both of these embedded loops find elements to be moved, swap the elements.
@@ -92,78 +118,108 @@ public class Sort {
 					array[front] = tmpFront;
 					array[back] = tmpBack;
 					front++;
+					frontSize++;
 					back--;
+					backSize++;
 					tmpFront = 0;
 					tmpBack = 0;
-					System.out.println("tmpFront:: " + tmpFront + " tmpBack:: " + tmpBack);
-					System.out.println("tmpFront and tmpBack were swapped");
-					System.out.println("-----------============----------");
-					System.out.println("FRONT:: " + front + " BACK:: " + back);
+
 				}
+				
+				System.out.println("----------++++++++++++++------------");
+				System.out.println("START::: " + start + " SIZE:::" + size);
+				System.out.println("FRONT:: " + front + " BACK:: " + back);
+				System.out.println("frontSize:: " + frontSize + ", backSize:: " + backSize);
+				System.out.println("##############################");
+//QuickSort(array, start, frontSize);
+//QuickSort(array, back, backSize);
 		}
 //		3.  Place the element at the start of the current segment where it belongs by 
 //		swapping it which the appropriate element that should be where Front and Back meet 
 //		give or take one position.
 		
-		if (front >= back) {
+		
 			System.out.println("");
 			System.out.println("EXIT STRATEGY");
+			System.out.println("FRONT:: " + front + " BACK:: " + back);
 			System.out.println("tmpFront:: " + tmpFront + " tmpBack:: " + tmpBack);
+			if (start == back) {
+				System.out.println(array[front] + "==" + array[back]);
+				System.out.println(front + " == " + back);
+				for (int a : array) {
+					System.out.print(a + ",");
+				}
+				System.out.println("");
+			//	break;
+			}
+			else if (front >= back && back > start) {
 			if (tmpFront == 0 && tmpBack == 0 ) {
-				tmpBack = array[0];
+				tmpBack = array[start];
 				tmpFront = array[back-1];
-				array[0] = tmpFront;
+				array[start] = tmpFront;
 				array[back-1] = tmpBack;
-				size = (back-1)-start;
-				System.out.println("----------++++++++++++++------------");
-				System.out.println("SIZE:::" + size);
-				System.out.println("FRONT:: " + front + " BACK:: " + back);
+//				start = tmpFront;
+//				frontSize = array[back-2];
+//				QuickSort(array, start, frontSize );
 			}
 				// if only something from the back needs to move to the front, 
 				// swap with array[0] 
 			else if (tmpFront != 0 && tmpBack == 0 ) {
-					array[back] = array[0];
-					array[0] = tmpFront;
-					size = back-start;
-					System.out.println("----------++++++++++++++------------");
-					System.out.println("SIZE:::" + size);
-					System.out.println("FRONT:: " + front + " BACK:: " + back);
+					array[back] = array[start];
+					array[start] = tmpFront;
+					backSize++;
+//					start = tmpFront;
+//					frontSize = array[back-2];
+//					QuickSort(array, start, frontSize );
 			}
-			// if only something from the front needs to move to the back, 
-			// swap with the element before tmpBack with array[0] 
+			// if something from the front needs to move to the back, 
+			// swap the element before tmpBack with array[0] 
 			else if (tmpFront == 0 && tmpBack != 0 ) {
-				tmpBack = array[front-1];
-				array[front-1] = array[0];
-				array[0] = tmpBack;
-				size = front-start;
-				 
-				System.out.println("----------++++++++++++++------------");
-				System.out.println("START::: " + start + " SIZE:::" + size);
-				System.out.println("FRONT:: " + front + " BACK:: " + back);
+				tmpBack = array[start];
+				System.out.println("tmpBack is now: " + tmpBack);
+				System.out.println("back is now: " + back);
+				tmpFront = array[front-1];
+				System.out.println("tmpFront is now: " + tmpFront);
+				System.out.println("front-1 is now: " + (front-1));
+				array[front-1] = tmpBack;
+				array[start] = tmpFront;
+				backSize++;
+				frontSize--;
+//				start = tmpFront;
+//				frontSize = array[back-2];
+//				QuickSort(array, tmpFront, frontSize );
+				
 			}
+			
+			System.out.println("----------++++++++++++++------------");
+			System.out.println("START::: " + start + " SIZE:::" + size);
+			System.out.println("FRONT:: " + front + " BACK:: " + back);
+			System.out.println("frontSize:: " + frontSize + ", backSize:: " + backSize);
 		}
 		for (int a : array) {
 			System.out.print(a + ",");
 		}
 		System.out.println("");
-	
-
-//
+//		QuickSort(array, tmpFront, frontSize );
+//		QuickSort(array, tmpBack, backSize );
+		
 //		4.  Call the recursive method passing it the array, the starting position of the 
 //		segment of the array, and the position just before the location where the element 
 //		was placed that was previously at the starting position of the current segment.  
 //		This is done provided the new starting position is bigger than the new ending 
 //		position.
-//	QuickSort(array, front-size, frontSize);
+	//	System.out.println("array: " + array + ", start: " + start + ", frontSize: " + frontSize);
+QuickSort(array, start, frontSize);
 	
 //
 //		5.  Call the recursive method passing it the array, the position just after the 
 //		location where the element was placed that was previously at the starting position 
 //		of the current segment, and the ending position of the current segment.  This is 
 //		also provided the new starting position is bigger than the new ending position. 
-
-//	QuickSort(array, back, back+3);
+//	System.out.println("array: " + array + ", start: " + start + ", backSize: " + backSize);
+	QuickSort(array, back, backSize);
 	}
+	}
+		
+} 
 
-	
-}
